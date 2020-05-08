@@ -1,0 +1,182 @@
+#container{
+	height: 25px;
+	width: 400px;
+	position: relative;
+	border: 1px solid #F00;
+}
+#myAnimation1{
+	height: 18px;
+	width: 50px;
+	position: absolute;
+	background:  #0F0;
+	background: linear-gradient(to left, #fd7e14, #851987);
+	/*Для мулти*/
+}
+.form-group input{
+	width: 10%;
+	margin: auto;
+	margin: 10px;
+}
+
+form>.form-group{	
+	text-align: center;
+}
+div.ch_ input{	
+	visibility: hidden;
+	padding-left: 120px;
+}
+div.ch_ div{		
+	/*background-color: #045; cтранный  див*/
+}
+div#box_altar i,div div.lvl_altar i{	
+	font-size:20px;
+	color:red;
+	position:absolute;
+	margin: 0 0 0 -5px;	
+	border: 1px solid #FF0;
+}
+div#box_altar i{
+	display: none;
+}
+div#box_runs i{	
+	font-size:25px;
+	color:#e83e8c;
+	position:absolute;
+	margin: 0 0 0 -5px;	
+}
+div i.ion-ios-bolt{
+	font-size:25px;
+	color:#e83e8c;
+	margin: 0 0 0 10px;
+}
+.ion-ios-flower-outline{
+	font-size:25px;
+	display: inline-block;
+	margin: 0 0 0 -10px;
+	position: absolute;	
+	background:  radial-gradient(closest-side, #FF0033, #000, rgba(102, 0, 51,.0));
+	border-radius: 50%;
+	color:rgba(0, 255, 255, .5);
+	display: none;	
+}
+div#box_1_6,div#box_7_15,div#box_16_25,div#box_bosses,div#box_altar,div#box_runs,div#box_1_6_solo,div#box_7_15_solo,div#box_16_25_solo,div#box_all{ 	
+display: block;
+	width: 400px;
+	height: 20px;
+	line-height: 20px;	
+	display: inline-block;
+	cursor: pointer;
+	margin: 10px 0;
+}
+.lvl_1_7_group,.lvl_7_15_group,.lvl_16_25_group,.lvl_bosses_group,.lvl_altar,.lvl_runs{
+	border-radius: 50%;
+	z-index: 10;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	display: inline-block;
+	margin:  0 0 0 -7px;
+}
+.lvl_1_7_group{
+	background-color: #0F0;
+	display: none;
+}
+.lvl_7_15_group{
+	background-color: #fd7e14;
+	display: none;
+}
+.lvl_16_25_group{
+	background-color: #F00;
+	display: none;
+}
+.lvl_bosses_group{
+	border-radius: 0%;
+	background-color: #6610f2;
+	display: none;
+	border: 2px solid #ffc107
+}
+.lvl_1_7_group_solo{
+	 width: 17px;
+    height: 17px;
+	border: 2px dotted #fff;
+	background: linear-gradient(to left top, #0c5401, #1eff00); 
+	display: inline-block;
+	z-index: 10;
+	position: absolute;
+	display: none;
+}
+div#box_1_6_solo.ch_ div{
+	margin: 5px 0 0 -7px;
+	display: none;
+}
+.lvl_7_15_group_solo{
+	 width: 17px;
+    height: 17px;
+	border: 2px dotted #fff;
+	background: linear-gradient(to left top, #ffce02, #ff6b01); 
+	display: inline-block;
+	z-index: 10;
+	position: absolute;
+	display: none;
+}
+div#box_7_15_solo.ch_ div{
+	margin: 5px 0 0 -7px;
+	display: none;
+}
+.lvl_16_25_group_solo{
+	 width: 17px;
+    height: 17px;
+	border: 2px dotted #fff;
+	background: linear-gradient(to left top, #ffce02, #ff0000); 
+	display: inline-block;
+	z-index: 10;
+	position: absolute;
+	display: none;
+}
+div#box_16_25_solo.ch_ div{
+	margin: 5px 0 0 -7px;
+	display: none;
+}
+div.checkbox div.ch_{
+	font-size: 140%;
+}
+#slider,#slider_solo{
+	width: 400px;
+	height: 20px; 
+	border:2px solid #8800ff;
+	margin: 8px 0;
+}
+#slider span,#slider_solo span{
+	vertical-align: middle;
+	height: 20px;
+	width: 20px;
+	position: relative;
+	display: inline-block;
+	border-radius: 50%;
+	color: #8800ff;
+	z-index: 1;
+	background: radial-gradient(gold, orangered);
+	vertical-align: middle;	
+	text-align: center;	
+}
+span #info{
+	vertical-align: middle;	
+	text-align: center;
+	margin: -50px 0 0  -6px;
+	width: 30px;
+	height: 30px; 
+	color: #f00;
+	font-size: 20px;
+	font-weight: 600;	
+	background-image: url("../img/slide.png");
+	background-size: cover;
+}
+.radio input{
+	vertical-align: middle;
+	width: 1.4em;
+	height: 1.4em;
+}
+.radio label{	
+	font-weight: bolder;
+	font-size:1.3em;
+}

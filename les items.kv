@@ -1,0 +1,1895 @@
+
+"item_create_les_1"
+	{
+		"ID"            "5001"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_1"
+		"ItemCost"              "500"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_1"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "%block"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"block"      "5"
+			}
+		}
+	}
+//-----------------------------------------------------2------------------------
+	"item_create_les_2"
+    {
+		"ID"            "5002"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_2"
+		"ItemCost"              "500"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_ALL"
+		"AbilityCastRange"              "400"
+		"AbilityManaCost"               "50"
+		"AbilityCooldown"               "15"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "epic"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+    "OnSpellStart"
+    {
+         "TrackingProjectile"
+        {
+            "Target"            "TARGET"
+            "EffectName"        "particles/custom_projectile_skadi.vpcf"
+            "Dodgeable"         "1"
+            "ProvidesVision"    "0"
+            "VisionRadius"      "0"
+            "MoveSpeed"         "1200"
+            "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+        }          
+    }
+    "OnProjectileHitUnit"
+    {
+        "DeleteOnHit" "true"
+         "ApplyModifier"                                          
+   			{
+   			 "ModifierName" "item_create_les_2m"
+   			 "Target" "TARGET"
+   			 "Duration" "2"
+  			}  
+    }   
+ "Modifiers" 
+ {      
+        "item_create_les_2m"
+        { 
+         "IsDebuff"      "1"
+         "Duration" "2"
+         "EffectName" "particles/econ/courier/courier_roshan_frost/courier_roshan_frost_ambient.vpcf"
+         "EffectAttachType" "follow_overhead"            
+           "States"
+                {
+                    "MODIFIER_STATE_ROOTED"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+        }
+
+ }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type" "FIELD_INTEGER"
+	    		"root" "2"
+	    	}
+	    }
+}  
+//-----------------------------------------------------3------------------------
+	"item_create_les_3"
+    {
+		"ID"            "5003"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_3"
+		"ItemCost"              "500"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_ALL"
+		"AbilityCastRange"              "500"
+		"AbilityManaCost"               "100"
+		"AbilityCooldown"               "13"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "epic"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+    "OnSpellStart"
+    {
+         "TrackingProjectile"
+        {
+            "Target"            "TARGET"
+            "EffectName"        "particles/custom_projectile_skadi.vpcf"
+            "Dodgeable"         "1"
+            "ProvidesVision"    "0"
+            "VisionRadius"      "0"
+            "MoveSpeed"         "1200"
+            "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+        }          
+    }
+    "OnProjectileHitUnit"
+    {
+        "DeleteOnHit" "true"
+         "ApplyModifier"                                          
+   			{
+   			 "ModifierName" "item_create_les_3m"
+   			 "Target" "TARGET"
+   			 "Duration" "1"
+  			}  
+  			"CreateThinker"
+  			{
+  			    "ModifierName"  "item_create_les_3t"
+  			    "Target"        "TARGET"
+   				"Duration" 		"3"
+  			}
+    }   
+ "Modifiers" 
+ {      
+        "item_create_les_3m"
+        { 
+         "IsDebuff"      "1"
+         "Duration" "1"
+         "EffectName" "particles/econ/courier/courier_roshan_frost/courier_roshan_frost_ambient.vpcf"
+         "EffectAttachType" "follow_overhead"            
+           "States"
+                {
+                    "MODIFIER_STATE_ROOTED"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+        }   
+  "item_create_les_3t"
+  {
+  "IsDebuff" "1"
+  "IsPurgable" "0"
+  "Duration" "3"     
+  "ThinkInterval" "0.25"
+   "OnIntervalThink"
+    {              
+        "Damage"
+       {
+        "Type"   "DAMAGE_TYPE_MAGICAL"
+        "Damage" "%dmg"
+        "Target" "TARGET"
+       }
+    }
+   }
+ }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type" "FIELD_INTEGER"
+	    		"root" "2"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type" "FIELD_INTEGER"
+	    		"dmg" "17" 
+	    	}
+	    	"03"
+	    	{
+	    		"var_type" "FIELD_INTEGER"
+	    		"dmg" "200"  // TOTl
+	    	}
+	    }
+}  
+//----------------------------------------------------4------------------------
+"item_create_les_4"
+	{
+		"ID"            "5004"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_4"
+		"ItemCost"              "800"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_4"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%ad"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ad"      "10"
+			}
+		}
+	}
+//----------------------------------------------------5------------------------
+"item_create_les_5"
+	{
+		"ID"            "5005"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_5"
+		"ItemCost"              "1000"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_5"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"int"      "30"
+			}
+		}
+	}
+//----------------------------------------------------6------------------------
+"item_create_les_6"
+	{
+		"ID"            "5006"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_6"
+		"ItemCost"              "1200"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_6"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%as"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"as"      "10"
+			}
+		}
+	}
+//----------------------------------------------------7------------------------
+"item_create_les_7"
+	{
+		"ID"            "5007"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_7"
+		"ItemCost"              "1500"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_7"
+			{
+				"Passive"     "1"
+				"IsHidden"    "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "OnAttackStart"
+			    {
+			    	"ApplyModifier"
+			    	{
+			    	    "ModifierName"  "modifier_l_7slov"
+			    	    "Target"        "TARGET"
+			    	    "Duration"      "%duration"
+			    	}
+			    	"CreateThinker"
+			    	{
+			    	    "ModifierName"  "modifier_l_7poision"
+			    	    "Target"        "TARGET"
+			    	    "Duration"      "%duration"
+			    	}
+			    }
+			}
+			"modifier_l_7slov"
+		    {
+			    "IsHidden"         "0"
+			    "IsDebuff"         "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%ms"
+			    }
+		    }
+			 "modifier_l_7poision"
+			    {
+ 				 "IsDebuff"    "1"
+			     "IsHidden"    "0"
+ 				 "IsPurgable"  "0"
+ 				 "Duration"    "%duration"     
+ 				 "ThinkInterval" "1"
+ 				  "OnIntervalThink"
+ 				   {              
+ 				       "Damage"
+ 				      {
+ 				       "Type"   "DAMAGE_TYPE_MAGICAL"
+ 				       "Damage" "%dmg"
+ 				       "Target" "TARGET"
+ 				      }
+ 				   }
+ 				}
+			
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "2"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ms"    	    "-25"
+			}
+			"03"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"dmg"      "15"
+			}
+		}
+	}
+//----------------------------------------------------8------------------------
+"item_create_les_8"
+	{
+		"ID"            "5008"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_8"
+		"ItemCost"              "2000"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_8"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%ad"
+						"MODIFIER_PROPERTY_HEALTH_BONUS" "%hp"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ad"      "15"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"hp"      "40"
+			}
+		}
+	}
+//----------------------------------------------------9------------------------
+"item_create_les_9"
+	{
+		"ID"            "5009"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_9"
+		"ItemCost"              "2500"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+  	
+		"OnEquip"
+		{
+			"RunScript"
+			{
+				"ScriptFile"    "CDR_item.lua"
+				"Function"      "item_les_9_equip"
+			}
+		}
+		"OnUnequip"
+			{
+				"RunScript"
+				{
+					"ScriptFile"    "CDR_item.lua"
+					"Function"      "item_les_9_unequip"
+				}
+			}
+		"Modifiers"
+		{
+			"modifier_l_9"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"int"      "60"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"cdr"      "5"
+			}
+		}
+	}
+//----------------------------------------------------10------------------------
+"item_create_les_10"
+	{
+		"ID"            "5010"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_10"
+		"ItemCost"              "500"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+	}
+//----------------------------------------------------11-----------------------?????????????????????????????????????????
+"item_create_les_11"
+{
+		"ID"            "5011"
+  "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+  "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+  "AbilityUnitTargetType" "DOTA_UNIT_TARGET_ALL"
+		"AbilityManaCost"               "150"
+		"AbilityCooldown"               "20"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_11"
+		"ItemCost"              "500"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"OnSpellStart"
+     {
+    	 "FireSound"
+    	 {
+    	     "Target"                "CASTER"
+    	     "EffectName"            "Hero_Ny5Assassin.Vendetta"
+    	 }      
+    	 "ApplyModifier"
+    	 {
+    	     "Target"                "CASTER"
+    	     "ModifierName"          "modifier_invisible"
+    	     "Duration"              "%duration"
+    	 }
+     }
+		"Modifiers"
+		{
+			"modifier_l_11"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"States"
+				{
+					//invis
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "2"
+			}
+		}
+}
+//----------------------------------------------------12------------------------
+"item_create_les_12"
+	{
+		"ID"            "5012"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_12"
+		"ItemCost"              "500"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+	}
+//----------------------------------------------------13------------------------
+"item_create_les_13"
+	{
+		"ID"            "5013"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_13"
+		"ItemCost"              "3500"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "Legendary"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{		
+			"item_create_les_13m"
+			{
+				"EffectName"    "particles/test_particle/creature_spiked_carapace.vpcf"
+				"IsHidden"      "1"
+				"Passive"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"OnAttacked"
+				{
+        		     "Random"
+        			 {
+        		    "Chance" "5"
+        		    "OnSuccess"
+        		       {
+			    			"ApplyModifier"
+			    			{
+			    			    "ModifierName"  "item_create_les_13mb"
+			    			    "Target"        "CASTER"
+			    			    "Duration"      "%duration"
+			    			}
+        			    }
+                     } 
+                }                
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "%hp"
+				}
+             }
+			"item_create_les_13mb"
+			{
+				"EffectName"    "particles/test_particle/creature_spiked_carapace.vpcf"
+				"IsHidden"      "0"
+				"Passive"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"					
+           			 "Properties"
+           			 {
+           			     "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%blockdmg"           			   
+           			 }
+			}
+		}   
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "2"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"blockdmg"      "-50"
+			}
+			"03"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"chance"      "5"
+			}
+			"04"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"hp"      "5"
+			}
+		}
+	}
+//----------------------------------------------------14------------------------
+"item_create_les_14"
+{
+		"ID"            "5014"
+  		"AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"             "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"    "item_create_les_14"
+		"ItemCost"              "2500"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+	"Modifiers"
+	{			
+        "item_create_les_14m"
+        {
+            "IsBuff"           "1"
+            "IsHidden"          "0"
+            "OnAttackLanded"
+            {
+              "RunScript"
+              {
+          		  "ScriptFile"    "lua_item/les_items/hel_attack.lua"
+                  "Function"      "hel_attack"
+                  "Target"        "CASTER"
+              }
+            }
+        }
+    }
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"prc"      "80"
+			}
+		}
+}
+
+//----------------------------------------------------15------------------------
+	"item_create_les_15"
+	{
+		"ID"            "5015"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_15"
+		"ItemCost"              "800"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "epic"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"item_create_les_15m"
+			{
+				"Passive"     "1"
+				"IsHidden"    "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"OnAttackStart"
+			{
+				"Random"
+				{
+					"Chance"            "%chance"
+					"OnSuccess"
+					{
+						"ApplyModifier"
+						{
+							"ModifierName"  "item_create_les_15t"
+							"Target"        "CASTER"
+						}
+					}
+				}
+			}
+			"Properties"
+			    {
+			    	"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%ad"
+			    }
+			}
+			"item_create_les_15t"
+			{
+				"IsHidden" "1"
+				"OnAttackLanded"
+				{
+				    "RemoveModifier"
+				    {
+						"ModifierName"  "item_create_les_15t"
+						"Target"        "CASTER"
+				    }
+				}
+			"Properties"
+			    {       
+			    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%add"
+			    }  
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ad"      "10"
+			}
+			"02"
+		    {
+		    	"var_type" "FIELD_INTEGER"
+		    	"add"     "25"
+		    } 
+			"03"
+		    {
+		    	"var_type" "FIELD_INTEGER"
+		    	"chance" "35"
+		    } 
+		
+		}
+	}
+//----------------------------------------------------16------------------------
+"item_create_les_16"
+	{
+		"ID"            "5016"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_16"
+		"ItemCost"              "900"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_16"
+			{
+				"Passive"     "1"
+				"IsHidden"    "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "OnAttackStart"
+			    {
+			    	"ApplyModifier"
+			    	{
+			    	    "ModifierName"  "modifier_l_16slov"
+			    	    "Target"        "TARGET"
+			    	    "Duration"      "%duration"
+			    	}
+			    }
+			}
+			"modifier_l_16slov"
+		    {
+			    "IsHidden"         "0"
+			    "IsDebuff"         "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%ms"
+			    }
+		    }	
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "1"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ms"    	    "-40"
+			}
+		}
+	}
+//----------------------------------------------------17------------------------
+"item_create_les_17"
+	{
+		"ID"            "5017"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_ALL"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_17"
+		"ItemCost"              "900"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"AbilityManaCost"               "0"
+		"AbilityCooldown"               "10"
+
+	"OnSpellStart"
+	{
+        "RunScript"
+        {
+            "ScriptFile"    "lua_item/les_items/blink.lua"
+            "Function"      "blink_item"
+        }
+		
+		"FireEffect"
+		{
+				"EffectName"        "particles/econ/items/antimage/antimage_weapon_basher_ti5_gold/antimage_manavoid_flare_ti_5_gold.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"            "CASTER"
+		}
+	}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"renge"      "300"
+			}
+		}
+	}
+
+
+
+
+	  //-------------------------------------------------------------------------------------------------------------------------------
+	  //------------------------------------------------------CБОРКИ-------------------------------------------------------------------
+	  //-------------------------------------------------------------------------------------------------------------------------------
+
+//-----------------------------------------------------101------------------------
+	"item_create_les_101"
+    {
+		"ID"            "5701"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_101"
+		"ItemCost"              "0"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_ALL"
+		"AbilityCastRange"              "400"
+		"AbilityManaCost"               "150"
+		"AbilityCooldown"               "15"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "epic"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+    "OnSpellStart"
+    {
+         "TrackingProjectile"
+        {
+            "Target"            "TARGET"
+            "EffectName"        "particles/custom_projectile_skadi.vpcf"
+            "Dodgeable"         "1"
+            "ProvidesVision"    "0"
+            "VisionRadius"      "0"
+            "MoveSpeed"         "1200"
+            "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+        }          
+    }
+    "OnProjectileHitUnit"
+    {
+        "DeleteOnHit" "true"
+         "ApplyModifier"                                          
+   			{
+   			 "ModifierName" "item_create_les_101m"
+   			 "Target" "TARGET"
+   			 "Duration" "2"
+  			}  
+    }   
+ "Modifiers" 
+ {      
+        "item_create_les_101m"
+        { 
+         "IsDebuff"      "1"
+         "Duration" "2"
+         "EffectName" "particles/econ/courier/courier_roshan_frost/courier_roshan_frost_ambient.vpcf"
+         "EffectAttachType" "follow_overhead"            
+           "States"
+                {
+                    "MODIFIER_STATE_ROOTED"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+        }
+
+ }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type" "FIELD_INTEGER"
+	    		"root" "2"
+	    	}
+	    }
+}  
+
+//----------------------------------------------------102------------------------
+"item_create_les_102"
+	{
+		"ID"            "5702"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_102"
+		"ItemCost"              "0"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_102"
+			{
+				"Passive"     "1"
+				"IsHidden"    "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "OnAttackStart"
+			    {
+			    	"ApplyModifier"
+			    	{
+			    	    "ModifierName"  "modifier_l_102slov"
+			    	    "Target"        "TARGET"
+			    	    "Duration"      "%duration"
+			    	}
+			    	"CreateThinker"
+			    	{
+			    	    "ModifierName"  "modifier_l_102poision"
+			    	    "Target"        "TARGET"
+			    	    "Duration"      "%duration"
+			    	}
+			    }
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%as"
+				}
+			}
+			"modifier_l_102slov"
+		    {
+			    "IsHidden"         "0"
+			    "IsDebuff"         "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%ms"
+			    }
+		    }
+			 "modifier_l_102poision"
+			    {
+ 				 "IsDebuff"    "1"
+			     "IsHidden"    "0"
+ 				 "IsPurgable"  "0"
+ 				 "Duration"    "%duration"     
+ 				 "ThinkInterval" "1"
+ 				  "OnIntervalThink"
+ 				   {              
+ 				       "Damage"
+ 				      {
+ 				       "Type"   "DAMAGE_TYPE_MAGICAL"
+ 				       "Damage" "%dmg"
+ 				       "Target" "TARGET"
+ 				      }
+ 				   }
+ 				}
+			
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "2"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ms"    	    "-35"
+			}
+			"03"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"dmg"      "20"
+			}
+			"04"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"as"      "20"
+			}
+		}
+	}
+//----------------------------------------------------103------------------------
+"item_create_les_103"
+	{
+		"ID"            "5703"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_103"
+		"ItemCost"              "0"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_103"
+			{
+				"Passive"     "1"
+				"IsHidden"    "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "OnAttackStart"
+			    {
+			    	"ApplyModifier"
+			    	{
+			    	    "ModifierName"  "modifier_l_103slov"
+			    	    "Target"        "TARGET"
+			    	    "Duration"      "%duration"
+			    	}
+			    	"CreateThinker"
+			    	{
+			    	    "ModifierName"  "modifier_l_103poision"
+			    	    "Target"        "TARGET"
+			    	    "Duration"      "%duration"
+			    	}
+			    }
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%ad"
+				}
+			}
+			"modifier_l_103slov"
+		    {
+			    "IsHidden"         "0"
+			    "IsDebuff"         "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%ms"
+			    }
+		    }
+			 "modifier_l_103poision"
+			    {
+ 				 "IsDebuff"    "1"
+			     "IsHidden"    "0"
+ 				 "IsPurgable"  "0"
+ 				 "Duration"    "%duration"     
+ 				 "ThinkInterval" "1"
+ 				  "OnIntervalThink"
+ 				   {              
+ 				       "Damage"
+ 				      {
+ 				       "Type"   "DAMAGE_TYPE_MAGICAL"
+ 				       "Damage" "%dmg"
+ 				       "Target" "TARGET"
+ 				      }
+ 				   }
+ 				}
+			
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "2"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ms"    	    "-35"
+			}
+			"03"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"dmg"      "20"
+			}
+			"04"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ad"      "20"
+			}
+		}
+	}
+//---------------------------------------------------104----------2lvl--------------
+"item_create_les_104"
+	{
+		"ID"                    "5704"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"             "item_datadriven"
+		"Model"                 "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"    "item_create_les_8"
+		"ItemCost"              "0"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_104"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%ad"
+						"MODIFIER_PROPERTY_HEALTH_BONUS" "%hp"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ad"      "30"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"hp"      "80"
+			}
+		}
+	}
+//---------------------------------------------------105----------3lvl--------------
+"item_create_les_105"
+	{
+		"ID"                    "5705"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"             "item_datadriven"
+		"Model"                 "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"    "item_create_les_8"
+		"ItemCost"              "0"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_105"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%ad"
+						"MODIFIER_PROPERTY_HEALTH_BONUS" "%hp"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ad"      "45"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"hp"      "120"
+			}
+		}
+	}
+//---------------------------------------------------106----------4lvl--------------
+"item_create_les_106"
+	{
+		"ID"                    "5706"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"             "item_datadriven"
+		"Model"                 "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"    "item_create_les_8"
+		"ItemCost"              "0"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_106"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%ad"
+						"MODIFIER_PROPERTY_HEALTH_BONUS" "%hp"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ad"      "60"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"hp"      "160"
+			}
+		}
+	}
+//---------------------------------------------------107----------5lvl--------------
+"item_create_les_107"
+	{
+		"ID"                    "5707"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"             "item_datadriven"
+		"Model"                 "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"    "item_create_les_8"
+		"ItemCost"              "0"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_107"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%ad"
+						"MODIFIER_PROPERTY_HEALTH_BONUS" "%hp"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ad"      "75"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"hp"      "200"
+			}
+		}
+	}
+//---------------------------------------------------108----------6lvl--------------
+"item_create_les_108"
+	{
+		"ID"                    "5708"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"             "item_datadriven"
+		"Model"                 "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"    "item_create_les_8"
+		"ItemCost"              "0"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_108"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"OnAttackLanded"
+				{
+					"Random"
+			      {
+					"Chance"            "15"
+					"OnSuccess"
+					{
+					     "RunScript"
+            			  {
+          					 "ScriptFile"    "lua_item/les_items/stun.lua"
+               			     "Function"      "stun_aa_ogr"						   
+					      }
+				    }				  
+				  }
+		       	}
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%ad"
+						"MODIFIER_PROPERTY_HEALTH_BONUS" "%hp"
+				}
+			}
+			"modifier_stun_108l"
+			{
+				"IsHidden" "0"
+				"IsDebuff"  "1"
+				"EffectName"  "particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType" "follow_overhead"
+				"States"
+				{
+				    "MODIFIER_STATE_STUNNED"   "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ad"      "75"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"hp"      "200"
+			}
+		}
+	}
+//---------------------------------------------------110-----------------------
+"item_create_les_110"
+	{
+		"ID"                    "5710"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"             "item_datadriven"
+		"Model"                 "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"    "item_create_les_10"
+		"ItemCost"              "0"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		 "OnSpellStart"
+    {       
+					     "RunScript"
+            			  {
+          					 "ScriptFile"    "lua_item/les_items/item110.lua"
+               			     "Function"      "h_d"						   
+					      }
+    }
+		"Modifiers"
+		{
+			"modifier_l_110"
+			{
+				"Passive"     "1"
+				"IsHidden"      "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int"
+						"MODIFIER_PROPERTY_HEALTH_BONUS" "%hp"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"int"      "60"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"hp"      "100"
+			}
+		}
+	}
+//----------------------------------------------------111------------------------
+	"item_create_les_111"
+	{
+		"ID"            "5711"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_111"
+		"ItemCost"              "0"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "epic"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"item_create_les_111m"
+			{
+				"Passive"     "1"
+				"IsHidden"    "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			"OnAttackStart"
+			{
+				"Random"
+				{
+					"Chance"            "%chance"
+					"OnSuccess"
+					{
+						"ApplyModifier"
+						{
+							"ModifierName"  "item_create_les_15t"
+							"Target"        "CASTER"
+						}
+					}
+				}
+			}
+			"Properties"
+			    {
+			    	"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%ad"
+			    }
+			}
+			"item_create_les_15t"
+			{
+				"IsHidden" "1"
+				"OnAttackLanded"
+				{
+				    "RemoveModifier"
+				    {
+						"ModifierName"  "item_create_les_15t"
+						"Target"        "CASTER"
+				    }
+				}
+			"Properties"
+			    {       
+			    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%add"
+			    }  
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ad"      "15"
+			}
+			"02"
+		    {
+		    	"var_type" "FIELD_INTEGER"
+		    	"add"     "45"
+		    } 
+			"03"
+		    {
+		    	"var_type" "FIELD_INTEGER"
+		    	"chance" "35"
+		    } 
+		
+		}
+	}
+//----------------------------------------------------112------------------------
+"item_create_les_112"
+	{
+		"ID"            "5712"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"         "item_datadriven"
+		"Model"           "models/props_gameplay/red_bo5.vmdl"
+		"AbilityTe5tureName"        "item_create_les_112"
+		"ItemCost"              "0"
+		"ItemKillable"          "1" 
+		"ItemDroppable"         "1"
+		"ItemSellable"          "1"
+		"ItemPurchasable"       "1"
+		"ItemQuality"           "common"
+		"ItemShareability"      "ITEM_FULLY_SHAREABLE"
+		"ItemDisassembleRule"   "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+		"Modifiers"
+		{
+			"modifier_l_112"
+			{
+				"Passive"     "1"
+				"IsHidden"    "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "OnAttackStart"
+			    {
+			    	"ApplyModifier"
+			    	{
+			    	    "ModifierName"  "modifier_l_112slov"
+			    	    "Target"        "TARGET"
+			    	    "Duration"      "%duration"
+			    	}
+			    	"CreateThinker"
+			    	{
+			    	    "ModifierName"  "modifier_l_112poision"
+			    	    "Target"        "TARGET"
+			    	    "Duration"      "%duration"
+			    	}
+			    }
+				"Properties"
+				{
+						"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%as"
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"     "%ad"
+				}
+			}
+			"modifier_l_112slov"
+		    {
+			    "IsHidden"         "0"
+			    "IsDebuff"         "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+			    "Properties"
+			    {
+			        "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%ms"
+			    }
+		    }
+			 "modifier_l_112poision"
+			    {
+ 				 "IsDebuff"    "1"
+			     "IsHidden"    "0"
+ 				 "IsPurgable"  "0"
+ 				 "Duration"    "%duration"     
+ 				 "ThinkInterval" "1"
+ 				  "OnIntervalThink"
+ 				   {              
+ 				       "Damage"
+ 				      {
+ 				       "Type"   "DAMAGE_TYPE_MAGICAL"
+ 				       "Damage" "%dmg"
+ 				       "Target" "TARGET"
+ 				      }
+ 				   }
+ 				}
+			
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "2"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ms"    	    "-65"
+			}
+			"03"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"dmg"           "40"
+			}
+			"04"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"as"      "20"
+			}
+			"04"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"ad"      "20"
+			}
+		}
+	}
+
+
+
+
+//////////////////////-------------------------------------------------------------------------------------------------////////////////////////
+//////////////////////-------------------------------------------------------------------------------------------------////////////////////////
+//////////////////////-------------------------------------------------------------------------------------------------////////////////////////
+//////////////////////-------------------------------------------------------------------------------------------------////////////////////////
+	  //---------------------------------------------------1-recipe------------------------------------------------------------------
+	"item_recipe_create_l_1"
+	{
+		"ID" "5801"
+		"BaseClass"           "item_datadriven"
+		"AbilityTe5tureName"        "item_create_1"
+		"ItemRecipe"          "1" 
+		"ItemCost"            "0" 
+		"ItemResult"          "item_create_les_101" 
+		"ItemRequirements"
+		{
+				"01" "item_create_les_1;item_create_les_5"
+		}
+	}
+	//---------------------------------------------------2-recipe------------------------------------------------------------------
+	"item_recipe_create_l_2"
+	{
+		"ID" "5802"
+		"BaseClass"           "item_datadriven"
+		"AbilityTe5tureName"        "item_create_1"
+		"ItemRecipe"          "1" 
+		"ItemCost"            "0" 
+		"ItemResult"          "item_create_les_102" 
+		"ItemRequirements"
+		{
+				"01" "item_create_les_7;item_create_les_6"
+		}
+	}
+	//---------------------------------------------------3-recipe------------------------------------------------------------------
+	"item_recipe_create_l_3"
+	{
+		"ID" "5803"
+		"BaseClass"           "item_datadriven"
+		"AbilityTe5tureName"        "item_create_1"
+		"ItemRecipe"          "1" 
+		"ItemCost"            "0" 
+		"ItemResult"          "item_create_les_103" 
+		"ItemRequirements"
+		{
+				"01" "item_create_les_7;item_create_les_4"
+		}
+	}  
+	//---------------------------------------------------4-recipe-------1-lvl-----------------------------------------------------------
+"item_recipe_create_l_4"
+{
+	"ID" "5804"
+	"BaseClass"           "item_datadriven"
+	"AbilityTe5tureName"        "item_create_1"
+	"ItemRecipe"          "1" 
+	"ItemCost"            "0" 
+	"ItemResult"          "item_create_les_104" 
+	"ItemRequirements"
+	{
+			"01" "item_create_les_8;item_create_les_8"
+	}
+}  //---------------------------------------------------5-recipe------------2-lvl-----------------------------------------------------
+"item_recipe_create_l_5"
+{
+	"ID" "5805"
+	"BaseClass"           "item_datadriven"
+	"AbilityTe5tureName"        "item_create_1"
+	"ItemRecipe"          "1" 
+	"ItemCost"            "0" 
+	"ItemResult"          "item_create_les_105" 
+	"ItemRequirements"
+	{
+			"01" "item_create_les_104;item_create_les_8"
+	}
+}  
+	  //---------------------------------------------------6---recipe------------3-lvl---------------------------------------------------
+	"item_recipe_create_l_6"
+	{
+		"ID" "5806"
+		"BaseClass"           "item_datadriven"
+		"AbilityTextureName"        "item_create_6"
+		"ItemRecipe"          "1" 
+		"ItemCost"            "0" 
+		"ItemResult"          "item_create_les_106" 
+		"ItemRequirements"
+		{
+				"01" "item_create_les_105;item_create_les_8"
+		}
+	} 
+	  //---------------------------------------------------7---recipe------------4-lvl---------------------------------------------------
+	"item_recipe_create_l_7"
+	{
+		"ID" "5807"
+		"BaseClass"           "item_datadriven"
+		"AbilityTextureName"        "item_create_7"
+		"ItemRecipe"          "1" 
+		"ItemCost"            "0" 
+		"ItemResult"          "item_create_les_107" 
+		"ItemRequirements"
+		{
+				"01" "item_create_les_106;item_create_les_8"
+		}
+	} 
+	  //---------------------------------------------------8---recipe------------5-lvl---------------------------------------------------
+	"item_recipe_create_l_8"
+	{
+		"ID" "5808"
+		"BaseClass"           "item_datadriven"
+		"AbilityTextureName"        "item_create_8"
+		"ItemRecipe"          "1" 
+		"ItemCost"            "0" 
+		"ItemResult"          "item_create_les_108" 
+		"ItemRequirements"
+		{
+				"01" "item_create_les_107;item_create_les_8"
+		}
+	} 
+	  //---------------------------------------------------9---recipe---------------------------------------------------------------
+	"item_recipe_create_l_9"
+	{
+		"ID" "5809"
+		"BaseClass"           "item_datadriven"
+		"AbilityTextureName"        "item_create_9"
+		"ItemRecipe"          "1" 
+		"ItemCost"            "0" 
+		"ItemResult"          "item_create_les_109" 
+		"ItemRequirements"
+		{
+				"01" "item_create_les_9;item_create_les_7"
+		}
+	} 
+	  //---------------------------------------------------10----recipe---------------------------------------------------------------
+	"item_recipe_create_10"
+	{
+		"ID" "5810"
+		"BaseClass"           "item_datadriven"
+		"AbilityTextureName"        "item_create_110"
+		"ItemRecipe"          "1" 
+		"ItemCost"            "0" 
+		"ItemResult"          "item_create_les_110" 
+		"ItemRequirements"
+		{
+				"01" "item_create_les_10;item_create_les_11;item_create_les_12"
+		}
+	} 
+
+	  //---------------------------------------------------11----recipe---------------------------------------------------------------
+	"item_recipe_create_11"
+	{
+		"ID" "5811"
+		"BaseClass"           "item_datadriven"
+		"AbilityTextureName"        "item_create_111"
+		"ItemRecipe"          "1" 
+		"ItemCost"            "0" 
+		"ItemResult"          "item_create_les_111" 
+		"ItemRequirements"
+		{
+				"01" "item_create_les_15;item_create_les_6"
+		}
+	} 
+	  //---------------------------------------------------12----recipe---------------------------------------------------------------
+	"item_recipe_create_12"
+	{
+		"ID" "5812"
+		"BaseClass"           "item_datadriven"
+		"AbilityTextureName"        "item_create_112"
+		"ItemRecipe"          "1" 
+		"ItemCost"            "0" 
+		"ItemResult"          "item_create_les_112" 
+		"ItemRequirements"
+		{
+				"01" "item_create_les_102;item_create_les_103"
+		}
+	} 
+	  //---------------------------------------------------13----recipe---------------------------------------------------------------
+	"item_recipe_create_13"
+	{
+		"ID" "5813"
+		"BaseClass"           "item_datadriven"
+		"AbilityTextureName"        "item_create_113"
+		"ItemRecipe"          "1" 
+		"ItemCost"            "0" 
+		"ItemResult"          "item_create_les_113" 
+		"ItemRequirements"
+		{
+				"01" "item_create_les_109;item_create_les_110"
+		}
+	} 
+	  //---------------------------------------------------XX----recipe---------------------------------------------------------------
+	//"item_recipe_create_XX"
+	//{
+	//	"ID" "58XX"
+	//	"BaseClass"           "item_datadriven"
+	//	"AbilityTextureName"        "item_create_1XX"
+	//	"ItemRecipe"          "1" 
+	//	"ItemCost"            "0" 
+	//	"ItemResult"          "item_create_les_1XX" 
+	//	"ItemRequirements"
+	//	{
+	//			"01" "item_create_les_XX;item_create_les_XX;item_create_les_XX"
+	//	}
+	//} 
+
+
+
+
+
+
+
+
+

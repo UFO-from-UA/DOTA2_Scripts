@@ -1,0 +1,248 @@
+
+	local damage = math.max(hero:GetAverageTrueAttackDamage()*7, hero:GetIntellect()*30)
+
+function Filters:CastSkillArguments(slot, caster)
+	if slot == 1 then
+		Filters:ApplyQskills(caster)
+	elseif slot == 2 then
+		Filters:ApplyWskills(caster)
+	elseif slot == 3 then
+		Filters:ApplyEskills(caster)
+	elseif slot == 4 then
+		Filters:ApplyRskills(caster)
+	end
+	Challenges:AbilityUsed(slot)
+	if caster:HasModifier("modifier_bladestorm_vest_buff") then
+
+
+function Filters:BeginRChannel(caster)
+	local ability = caster:GetAbilityByIndex(3)
+	local baseCd = ability:GetCooldownTimeRemaining()
+	if caster:HasModifier("modifier_galaxy_orb") then
+		caster.galaxy_orb:ApplyDataDrivenModifier(caster.InventoryUnit, caster, "modifier_galaxy_orb_channel", {duration = 3.0})
+	end
+
+
+
+	if caster:HasModifier("modifier_signus_charm") then
+		ability:EndCooldown()
+		baseCd = baseCd*0.6
+		ability:StartCooldown(baseCd)
+	end
+
+   krit lua
+function Filters:OdinCrit(attacker, victim, damage, damage_type)
+	local luck = RandomInt(1, 100)
+	if luck >= 96 then
+		ApplyDamage({ victim = victim, attacker = attacker, damage = damage*20, damage_type = damage_type })
+		PopupDamage(victim, damage*20)
+	end
+end
+
+
+Ðàñõîäÿùÿÿñÿ âîëíà ñèë³ îò ìîðä³
+function Filters:WitchHat(caster)
+	local fv = caster:GetForwardVector()
+	local ability = caster.witchHat
+	ability.caster = caster
+	local projectileParticle = "particles/econ/items/death_prophet/death_prophet_acherontia/death_prophet_acher_swarm.vpcf"
+	local projectileOrigin = caster:GetAbsOrigin() + fv*10
+	local start_radius = 120
+	local end_radius = 400
+	local range = 900
+	local speed = 850
+	local info = 
+	{
+			Ability = ability,
+        	EffectName = projectileParticle,
+        	vSpawnOrigin = projectileOrigin+Vector(0,0,60),
+        	fDistance = range,
+        	fStartRadius = start_radius,
+        	fEndRadius = end_radius,
+        	Source = caster,
+        	StartPosition = "attach_hitloc",
+        	bHasFrontalCone = true,
+        	bReplaceExisting = false,
+        	iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+        	iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+        	iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+        	fExpireTime = GameRules:GetGameTime() + 4.0,
+		bDeleteOnHit = false,
+		vVelocity = fv * speed,
+		bProvidesVision = false,
+	}
+	projectile = ProjectileManager:CreateLinearProjectile(info)
+end
+
+âåêòîðà
+
+function Filters:FalconBoot(caster)
+	print("falcon boot?")
+	local fv = caster:GetForwardVector()
+	local point = caster:GetAbsOrigin() + fv*120
+	Filters:FalconProjectile(caster, fv, point)
+	Filters:FalconProjectile(caster, fv, point+WallPhysics:rotateVector(fv,math.pi/2)*90-fv*80)
+	Filters:FalconProjectile(caster, fv, point-WallPhysics:rotateVector(fv,math.pi/2)*90-fv*80)
+	Filters:FalconProjectile(caster, fv, point+WallPhysics:rotateVector(fv,math.pi/2)*180-fv*160)
+	Filters:FalconProjectile(caster, fv, point-WallPhysics:rotateVector(fv,math.pi/2)*180-fv*160)
+	EmitSoundOnLocationWithCaster(caster:GetAbsOrigin(), "Hero_SkywrathMage.ArcaneBolt.Cast", caster)
+end\
+
+
+function Filters:ScourgeKnight(caster)
+	local fv = caster:GetForwardVector()
+	local casterOrigin = caster:GetAbsOrigin()
+	local perpFv = WallPhysics:rotateVector(fv, math.pi/2)
+	local spawnPosition = casterOrigin-fv*180
+	local vectorTable = {spawnPosition-perpFv*240, spawnPosition-perpFv*120, spawnPosition, spawnPosition+perpFv*120, spawnPosition+perpFv*240}
+	for i = 1, #vectorTable, 1 do
+
+
+
+
+function GameMode:OnPlayerLevelUp(keys)
+  DebugPrint('[BAREBONES] OnPlayerLevelUp')
+  -- DebugPrintTable(keys)
+  -- DeepPrintTable(keys)
+  local player = EntIndexToHScript(keys.player)
+  local level = keys.level
+  local hero = player:GetAssignedHero()
+  Events:HeroLevelUp(player, hero, level)
+  if MAIN_HERO_TABLE then
+    for i = 1, #MAIN_HERO_TABLE, 1 do
+      MAIN_HERO_TABLE[i]:SetAbilityPoints(0)
+    end
+  end
+end
+
+function Events:HeroLevelUp(player, hero, level)
+  hero:SetAbilityPoints(0)
+
+  local player_stats = CustomNetTables:GetTableValue("player_stats", tostring(player:GetPlayerID()))
+  local current_rune_points = player_stats.runePoints
+  local current_skill_points = player_stats.skillPoints
+  if level%5 == 0 then
+    CustomNetTables:SetTableValue("player_stats", tostring(player:GetPlayerID()), {skillPoints = current_skill_points+1, runePoints = current_rune_points+2} )
+  else
+    CustomNetTables:SetTableValue("player_stats", tostring(player:GetPlayerID()), {skillPoints = current_skill_points, runePoints = current_rune_points+2} )
+  end
+  CustomGameEventManager:Send_ServerToPlayer(player, "AbilityUp", {playerId=PlayerID})
+  CustomGameEventManager:Send_ServerToPlayer(player, "ability_tree_upgrade", {playerId=PlayerID})
+  CustomGameEventManager:Send_ServerToPlayer(player, "hero_level_up", {})
+end
+
+
+
+pLAYER ID
+
+  local PlayerID = keys.playerID
+  local player = PlayerResource:GetPlayer(PlayerID)
+
+  function GameMode:OnEntityKilled( keys )
+  DebugPrint( '[BAREBONES] OnEntityKilled Called' )
+  DebugPrintTable( keys )
+
+  GameMode:_OnEntityKilled( keys )
+  
+
+  local killedUnit = EntIndexToHScript( keys.entindex_killed )
+  local killerEntity = nil
+  local xpBounty = killedUnit:GetDeathXP()
+  if keys.entindex_attacker ~= nil then
+    killerEntity = EntIndexToHScript( keys.entindex_attacker )
+  end
+  local damagebits = keys.damagebits -- This might always be 0 and therefore useless
+    if killedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
+      Events:updateKillQuest(killedUnit)
+      Events:UpdateKillScores(killedUnit,killerEntity)
+      if killedUnit.itemLevel then
+        Dungeons.itemLevel = killedUnit.itemLevel
+      end
+      if xpBounty > 0 then
+        RPCItems:RollDrops(killedUnit, killerEntity)
+      end
+      Weapons:UpdateWeaponXP(xpBounty)
+      if killedUnit.champion then
+        Events:RollExtraItems(200, killedUnit:GetAbsOrigin(), 2, 5)
+      end
+      if killedUnit.minDrops then
+        Events:RollExtraItems(killedUnit:GetDeathXP(), killedUnit:GetAbsOrigin(), killedUnit.minDrops, killedUnit.maxDrops)
+      end
+
+      Events:SpecialDeath(killedUnit, killerEntity)
+      Timers:CreateTimer(8,
+        function()
+              UTIL_Remove(killedUnit)
+
+        end)
+  
+    end
+    if killedUnit.dummy then
+      killedUnit.dummy:RemoveSelf()
+    end
+  if killedUnit:GetTeamNumber() == DOTA_TEAM_GOODGUYS and killedUnit:IsHero() and not killedUnit:HasModifier("modifier_paladin_rune_a_c_revivable") and not killedUnit:HasModifier("modifier_phoenix_rebirthing") then
+    Events:PlayerKill(killedUnit, killerEntity)
+    Timers:CreateTimer(0.05, function()
+      local respawnTime = 45
+      if killedUnit:HasModifier("modifier_duskbringer_glyph_2_1") then
+        respawnTime = 20
+      end
+      if killedUnit:GetTimeUntilRespawn() > respawnTime then
+        killedUnit:SetTimeUntilRespawn(respawnTime)
+      end
+    end)
+    Timers:CreateTimer(2,
+      function()
+        Challenges:PlayerDied()
+        if GameState:GetDifficultyFactor() > 1 then
+          Events:CheckLoseCondition()
+        end
+      end)
+  end
+end
+
+
+
+function SaveAbilitiesCooldowns(unit)
+    if not unit then return end
+   
+    local savetable = {}
+    local abilities = unit:GetAbilityCount() - 1
+    for i = 0, abilities do
+        if unit:GetAbilityByIndex(i) then
+            savetable[i] = unit:GetAbilityByIndex(i):GetCooldownTimeRemaining()
+        end
+    end
+
+    savetable.items = {}
+
+    for i = 0, 5 do
+        if unit:GetItemInSlot(i) then
+            savetable.items[unit:GetItemInSlot(i)] = unit:GetItemInSlot(i):GetCooldownTimeRemaining() 
+        end
+    end
+
+    return savetable
+end
+
+function SetAbilitiesCooldowns(unit, settable)
+    local abilities = unit:GetAbilityCount() - 1
+    if not settable or not unit then return end
+    for i = 0, abilities do
+        if unit:GetAbilityByIndex(i) then
+            unit:GetAbilityByIndex(i):StartCooldown(settable[i])
+            if settable[i] == 0 then 
+                unit:GetAbilityByIndex(i):EndCooldown() 
+            end
+        end
+    end
+
+    if settable.items then
+        for item, cooldown in pairs(settable.items) do
+            if item and IsValidEntity(item) then
+                item:EndCooldown() 
+                item:StartCooldown(cooldown) 
+            end
+        end
+    end
+end

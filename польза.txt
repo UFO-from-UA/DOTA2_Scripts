@@ -1,0 +1,222 @@
+
+  local fDist = ( npc:GetOrigin() - npc.vInitialSpawnPos ):Length2D()
+    if fDist > search_radius then
+        RetreatHome()            -- если юнит слишком далеко, то идет на точку спавна
+        return 3
+    end
+
+
+time = time - GameRules:GetGameTime()
+
+if WAGameMode == nil then
+  _G.WAGameMode = class({})
+end
+
+function WAGameMode:PutStartPositionToRandomPosForTeam(team)
+    local playerStarts = Entities:FindAllByClassname("info_player_start_dota")
+    for _, start in pairs(playerStarts) do
+        if start:GetTeamNumber() == team then
+            local randomPos = self:GetRandomValidPosition()
+            while not GridNav:CanFindPath(Entities:FindByName(nil, "world_center"):GetOrigin(),randomPos) do
+                randomPos =self:GetRandomValidPosition()
+            end
+            start:SetOrigin(randomPos)
+        end
+    end
+end
+
+function WAGameMode:GetRandomValidPosition(ignoreFightintArea)
+  local minx = GetWorldMinX()
+    local maxx = GetWorldMaxX()
+    local miny = GetWorldMinY()
+    local maxy = GetWorldMaxY()
+    local function getRandomPos()
+        if not ignoreFightintArea and GameRules.FightingArea and GameRules.FightingArea.rescaleCenter and GameRules.FightingArea.rescaleRadius then
+            return GameRules.FightingArea.rescaleCenter + RandomVector(RandomFloat(0, GameRules.FightingArea.rescaleRadius))
+        else
+            return Vector(RandomFloat(minx, maxx), RandomFloat(miny, maxy), 0)
+        end
+    end
+    local randomPos = getRandomPos()
+    while not GridNav:CanFindPath(Entities:FindByName(nil, "world_center"):GetOrigin(),randomPos) 
+      or (self:IsPositionInCenterArea(randomPos) and RollPercentage(50))
+      do
+        randomPos = getRandomPos()
+    end
+    return randomPos
+end
+
+
+
+
+function WAGameMode:InitGameMode()
+  -- 根据地图名称设置玩家人数
+  local mapName = GetMapName()
+  local teams = {2,3,6,7,8,9,10,11,12,13}
+  local teamCount = 10
+  local playerCountPerTeam = 1
+  if mapName == "mirkwood_1x10" then
+    teamCount = 10
+    playerCountPerTeam = 1
+    self.nTeamKillsToWin = 30
+  elseif mapName == "mirkwood_2x5" then
+    teamCount = 5
+    playerCountPerTeam = 2
+    self.nTeamKillsToWin = 40
+  elseif mapName == "mirkwood_5v5" then
+    teamCount = 2
+    playerCountPerTeam = 5
+    self.nTeamKillsToWin = 50
+  end
+  CustomNetTables:SetTableValue( "game_state", "victory_condition", { kills_to_win = self.nTeamKillsToWin } );
+  self.vTeams = {}
+  for i = 1, teamCount do
+    GameRules:SetCustomGameTeamMaxPlayers(teams[i],playerCountPerTeam)
+        Timer(2, function()
+          self:PutStartPositionToRandomPosForTeam(teams[i])
+        end)
+        table.insert(self.vTeams, teams[i])
+  end
+    self.nTeamCount = teamCount
+    self.isGameTied = false
+
+
+
+
+  -- 修复物品过多无法购买的问题
+  SendToServerConsole("dota_max_physical_items_purchase_limit 9999")
+
+  self._GameMode = GameRules:GetGameModeEntity()
+
+function GetAttributeByAttributeType(caster,AttributeType)
+    if AttributeType == 0 then
+        return caster:GetStrength()
+    elseif AttributeType == 1 then
+        return caster:GetAgility()
+    elseif AttributeType == 2 then
+        return caster:GetIntellect()
+    end
+end
+
+
+    local vecTarget = target:GetOrigin()
+    local vecCaster = caster:GetOrigin()
+    local face = target:GetForwardVector()
+    local faceTo = (vecCaster - vecTarget):Normalized()
+
+
+
+ function create_illusion(keys, illusion_origin, illusion_incoming_damage, illusion_outgoing_damage, illusion_duration) 
+    local player_id = keys.caster:GetPlayerID()
+    local caster_team = keys.caster:GetTeam()
+    
+    local illusion = CreateUnitByName(keys.caster:GetUnitName(), illusion_origin, true, keys.caster, nil, caster_team)  --handle_UnitOwner needs to be nil, or else it will crash the game.
+    illusion:SetOwner(keys.caster)
+    illusion:SetPlayerID(player_id)
+    illusion:SetControllableByPlayer(player_id, true)
+
+    --Level up the illusion to the caster's level.
+    local caster_level = keys.caster:GetLevel()
+    for i = 1, caster_level - 1 do
+        illusion:HeroLevelUp(false)
+    end
+
+    --Set the illusion's available skill points to 0 and teach it the abilities the caster has.
+    illusion:SetAbilityPoints(0)
+    for ability_slot = 0, 15 do
+        local individual_ability = keys.caster:GetAbilityByIndex(ability_slot)
+        if individual_ability ~= nil then 
+            local illusion_ability = illusion:FindAbilityByName(individual_ability:GetAbilityName())
+            if illusion_ability ~= nil then
+                illusion_ability:SetLevel(individual_ability:GetLevel())
+            end
+        end
+    end
+
+    --Recreate the caster's items for the illusion.
+    for item_slot = 0, 5 do
+        local individual_item = keys.caster:GetItemInSlot(item_slot)
+        if individual_item ~= nil then
+            local illusion_duplicate_item = CreateItem(individual_item:GetName(), illusion, illusion)
+            illusion:AddItem(illusion_duplicate_item)
+            illusion_duplicate_item.__CustomAttributes = individual_item.__CustomAttributes
+        end
+    end
+
+    SuitSystem:Do(illusion, {})
+
+    illusion:AddNewModifier(keys.caster, keys.ability, "modifier_illusion", {duration = illusion_duration, outgoing_damage = illusion_outgoing_damage, incoming_damage = illusion_incoming_damage})
+    illusion:MakeIllusion()
+    illusion.shushan_illusion_ownner = keys.caster
+    illusion:RemoveNoDraw()
+    illusion:RemoveModifierByName("modifier_invulnerable")
+    illusion:RemoveModifierByName("modifier_custom_stun2")
+
+    return illusion
+end
+
+
+//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah
+function MoveUnitToTarget(unit,target,speed,func)
+    local endTime = GameRules:GetGameTime() + 5
+    unit:SetContextThink(DoUniqueString("MoveUnitToTarget"), 
+        function()
+            if GameRules:IsGamePaused() then return 0.03 end
+            if unit==nil or target==nil or unit:IsNull() or target:IsNull() or GameRules:GetGameTime() >= endTime  then
+                if func then func() end
+                return nil
+            end
+            local vecCaster = unit:GetOrigin()
+            local vecTarget = target:GetOrigin()
+            if GetDistanceBetweenTwoVec2D(vecCaster,vecTarget) > 100 or GameRules:GetGameTime() >= endTime then
+                local forward = (vecTarget - vecCaster):Normalized()
+                unit:SetOrigin(vecCaster+forward*speed*0.03)
+                return 0.03
+            else
+                FindClearSpaceForUnit(unit,unit:GetOrigin(),false)
+                if func then func() end
+                return nil
+            end
+        end, 
+    0.03)
+end
+
+function GetDistanceBetweenTwoVec2D(a, b)
+    local xx = (a.x-b.x)
+    local yy = (a.y-b.y)
+    return math.sqrt(xx*xx + yy*yy)
+end
+//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah//rivki  nah
+
+function MoveUnitToFaceFixedTime(unit,speed,time,func)
+    local endTime = time
+    unit:SetContextThink(DoUniqueString("MoveUnitToTarget"), 
+        function()
+            if GameRules:IsGamePaused() then return 0.03 end
+            if unit==nil or unit:IsNull() then
+                if func then func() end
+                return nil
+            end
+            if endTime > 0 then
+                unit:SetOrigin(unit:GetOrigin()+unit:GetForwardVector()*speed*0.03)
+                endTime = endTime - 0.03
+                return 0.03
+            else
+                FindClearSpaceForUnit(unit,unit:GetOrigin(),false)
+                if func then func() end
+                return nil
+            end
+        end, 
+    0.03)
+end
+
+
+
+/script SendChatMessage("msg" ,"chatType" ,"language" ,"channel");
+    SendChatMessage(msg, "RAID") всем
+http://wowwiki.wikia.com/wiki/API_SendChatMessage
+    local s = "Hello World"
+local index = GetChannelName("General") -- It finds General is a channel at index 1
+if (index~=nil) then 
+  SendChatMessage(s , "CHANNEL", nil, index); 
+end

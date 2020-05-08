@@ -1,0 +1,6 @@
+–¿¡Œ“¿≈“
+    "dota_ability_variable_zzz"     "ÃŒ√ «¿¡€“‹ »—œ–¿¬»“‹ ›“” ’”…Õﬁ"
+    //"DOTA_Tooltip_ability_item_item_example"           "+$zzz"
+
+"dota_ability_variable_my_name"		"Name"
+"DOTA_Tooltip_ability_item_item_example"						"+$my_name"
